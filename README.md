@@ -709,3 +709,37 @@ Example:
         -Dversion=1.0-SNAPSHOT \
         -DwlpInstallDir=<liberty_install_directory>
 
+### clean-goal
+---
+
+The `clean` goal remove the content of logs directory of a Liberty profile server instance only when the server is stopped.
+
+#### Parameters
+
+| Attribute | Description | Required |
+| --------- | ------------ | ----------|
+| installDir | Location of the Liberty profile server installation. | Yes |
+| serverName | Name of the Liberty profile server instance. The default value is `defaultServer`. | No |
+| userDir | Value of the `${wlp_user_dir}` variable. The default value is `${installDir}/usr/servers/${serverName}`. | No | 
+| outputDir | Value of the `${wlp_output_dir}` variable. The default value is `${installDir}/usr/servers/${serverName}`. | No | 
+
+#### Example:
+    <plugin>
+    <groupId>net.wasdev.wlp.maven.plugins</groupId>
+    <artifactId>liberty-maven-plugin</artifactId> 
+    <executions>
+        ...
+        <execution>
+            <id>clean-goal</id>
+            <phase>compile</phase>
+            <goals>
+                <goal>clean-goal</goal>
+            </goals>
+        </execution>
+        ...
+    </executions>
+    <configuration>
+       <installDirectory>/opt/ibm/wlp</installDirectory>
+       <serverName>test</serverName>
+    </configuration>              
+</plugin>
